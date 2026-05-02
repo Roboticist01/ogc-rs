@@ -6170,10 +6170,32 @@ pub struct _syssramex {
 pub type alarmcallback =
     ::core::option::Option<unsafe extern "C" fn(alarm: syswd_t, cb_arg: *mut ::libc::c_void)>;
 pub type sys_fontheader = _sys_fontheader;
-#[repr(C)]
+#[repr(C, packed)]
 #[derive(Debug, Copy, Clone)]
 pub struct _sys_fontheader {
-    pub _address: u8,
+    pub font_type: u16_,
+    pub first_char: u16_,
+    pub last_char: u16_,
+    pub inval_char: u16_,
+    pub asc: u16_,
+    pub desc: u16_,
+    pub width: u16_,
+    pub leading: u16_,
+    pub cell_width: u16_,
+    pub cell_height: u16_,
+    pub sheet_size: u32_,
+    pub sheet_format: u16_,
+    pub sheet_column: u16_,
+    pub sheet_row: u16_,
+    pub sheet_width: u16_,
+    pub sheet_height: u16_,
+    pub width_table: u16_,
+    pub sheet_image: u32_,
+    pub sheet_fullsize: u32_,
+    pub c0: u8_,
+    pub c1: u8_,
+    pub c2: u8_,
+    pub c3: u8_,
 }
 pub type resetcallback =
     ::core::option::Option<unsafe extern "C" fn(irq: u32_, ctx: *mut ::libc::c_void)>;

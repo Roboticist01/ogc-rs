@@ -151,4 +151,15 @@ fn main() {
 	bindings
 		.write_to_file("./src/ogc.rs")
 		.expect("Unable to write bindings to file");
+
+	// Bindgen makes structs opaque when it sees a forward typedef (e.g.
+	// `typedef struct _X X;`) before the actual struct definition. The combined
+	// `typedef struct _X { ... } X;` pattern works fine. Since we can't change
+	// the libogc headers, we patch the known affected structs here.
+	let ogc_rs = std::fs::read_to_string("./src/ogc.rs").expect("Unable to read ogc.rs");
+	let ogc_rs = ogc_rs.replace(
+		"#[repr(C)]\n#[derive(Debug, Copy, Clone)]\npub struct _sys_fontheader {\n    pub _address: u8,\n}",
+		"#[repr(C, packed)]\n#[derive(Debug, Copy, Clone)]\npub struct _sys_fontheader {\n    pub font_type: u16_,\n    pub first_char: u16_,\n    pub last_char: u16_,\n    pub inval_char: u16_,\n    pub asc: u16_,\n    pub desc: u16_,\n    pub width: u16_,\n    pub leading: u16_,\n    pub cell_width: u16_,\n    pub cell_height: u16_,\n    pub sheet_size: u32_,\n    pub sheet_format: u16_,\n    pub sheet_column: u16_,\n    pub sheet_row: u16_,\n    pub sheet_width: u16_,\n    pub sheet_height: u16_,\n    pub width_table: u16_,\n    pub sheet_image: u32_,\n    pub sheet_fullsize: u32_,\n    pub c0: u8_,\n    pub c1: u8_,\n    pub c2: u8_,\n    pub c3: u8_,\n}",
+	);
+	std::fs::write("./src/ogc.rs", ogc_rs).expect("Unable to write patched ogc.rs");
 }

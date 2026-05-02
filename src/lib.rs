@@ -39,7 +39,8 @@ pub mod error;
 pub use error::{OgcError, Result};
 
 // Networking Implementation
-pub mod network;
+// TODO: stubbed out pending sockaddr type mismatch fix
+/* pub mod network; */
 
 // Audio Implementation
 pub mod audio;

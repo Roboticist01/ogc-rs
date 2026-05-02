@@ -3,3 +3,4 @@ target = "powerpc-unknown-eabi.json"
 
 [unstable]
 build-std = ["core", "alloc"]
+json-target-spec = true

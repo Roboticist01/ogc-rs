@@ -196,7 +196,7 @@ impl From<SocketAddress> for *mut ffi::sockaddr {
         Box::into_raw(Box::new(ffi::sockaddr {
             sa_len: s_addr.length,
             sa_family: sa_family as u8,
-            sa_data: s_addr.data, //@TODO: Type mismatch
+            sa_data: s_addr.data, //@TODO: Type mismatch (c_char = u8 on powerpc, data is [i8; 14])
         }))
     }
 }*/

@@ -104,10 +104,10 @@ impl WPad {
         (data.ir.x, data.ir.y)
     }
 
-    pub fn gforce(self) -> (f32, f32, f32) {
+    /*pub fn gforce(self) -> (f32, f32, f32) {
         let data = self.raw();
-        (data.gforce.x, data.gforce.y, data.gforce.z)
-    }
+        (data.gforce.x, data.gforce.y, data.gforce.z) //@TODO: Bindgen structs are broken
+    }*/
 
     pub fn accel(&self) -> (u16, u16, u16) {
         let data = self.raw();

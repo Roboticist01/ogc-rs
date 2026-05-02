@@ -427,11 +427,11 @@ impl System {
     }
 
     /// Switch Fiber
-    pub fn switch_fiber(arg0: u32, arg1: u32, arg2: u32, arg3: u32, pc: u32, newsp: u32) {
+    /*pub fn switch_fiber(arg0: u32, arg1: u32, arg2: u32, arg3: u32, pc: u32, newsp: u32) {
         unsafe {
-            ffi::SYS_SwitchFiber(arg0, arg1, arg2, arg3, pc, newsp);
+            ffi::SYS_SwitchFiber(arg0, arg1, arg2, arg3, pc, newsp); @TODO: This symbol doesn't exist
         }
-    }
+    }*/
 
     /// Get Hollywood Revision
     pub fn get_hollywood_revision() -> u32 {

@@ -188,7 +188,7 @@ pub struct SocketAddress {
     pub data: [i8; 14],
 }
 
-/// Convert ``SocketAddress`` into a ``ogc_sys::sockaddr``.
+/*/// Convert ``SocketAddress`` into a ``ogc_sys::sockaddr``.
 impl From<SocketAddress> for *mut ffi::sockaddr {
     fn from(s_addr: SocketAddress) -> Self {
         // TODO: Check implementation.
@@ -196,10 +196,10 @@ impl From<SocketAddress> for *mut ffi::sockaddr {
         Box::into_raw(Box::new(ffi::sockaddr {
             sa_len: s_addr.length,
             sa_family: sa_family as u8,
-            sa_data: s_addr.data,
+            sa_data: s_addr.data, //@TODO: Type mismatch
         }))
     }
-}
+}*/
 
 /// The hostent structure is used by functions to store
 /// information about a given host, such as host name and IPv4 address.
@@ -264,7 +264,7 @@ pub fn addr_to_dot(addr: &mut IPV4Address) -> Result<String> {
     }
 }
 
-/// This function returns a structure of type ``HostInformation`` for the given host name.
+/*/// This function returns a structure of type ``HostInformation`` for the given host name.
 /// Here ``addr_string`` is either a hostname, or an IPv4 address in standard dot notation.
 pub fn get_host_by_name(addr_string: &str) -> Result<HostInformation> {
     unsafe {
@@ -291,13 +291,13 @@ pub fn get_host_by_name(addr_string: &str) -> Result<HostInformation> {
                     .unwrap()
                     .to_string(),
                 aliases: arr_to_str((*r).h_aliases),
-                address_type: (*r).h_addrtype,
-                length: (*r).h_length,
+                address_type: (*r).h_addrtype, //@TODO: Type mismatch
+                length: (*r).h_length, //@TODO: Type mismatch
                 address_list: arr_to_str((*r).h_addr_list),
             })
         }
     }
-}
+}*/
 
 /// Represents the networking service.
 /// No networking can be done until an instance of this struct is created.

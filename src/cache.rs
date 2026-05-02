@@ -88,6 +88,6 @@ pub fn ic_unfreeze() {
 ///
 /// This ensures that all instructions preceding this instruction have completed
 /// before this instruction completes.
-pub fn ic_sync() {
-    unsafe { ffi::ICSync() }
-}
+/*pub fn ic_sync() {
+    unsafe { ffi::ICSync() } //@TODO: This symbols doesn't exist
+}*/

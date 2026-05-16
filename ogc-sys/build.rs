@@ -83,6 +83,7 @@ fn main() {
 	println!("cargo:rustc-link-lib=static=asnd");
 	println!("cargo:rustc-link-lib=static=mad");
 	println!("cargo:rustc-link-lib=static=aesnd");
+	println!("cargo:rustc-link-lib=static=gcc");
 
 	//MP3Player
 
